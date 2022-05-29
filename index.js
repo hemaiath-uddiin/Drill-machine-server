@@ -8,7 +8,7 @@ const app = express();
 const objectId = require('mongodb').ObjectId;
 
 
-const uri = `mongodb+srv://${process.env.Drill_USER}:${process.env.Drill_PASS}@cluster0.iyeky.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DRILL_USER}:${process.env.DRILL_PASS}@cluster0.iyeky.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 async function run() { 
    try{ 
