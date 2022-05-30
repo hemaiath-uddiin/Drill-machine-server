@@ -16,12 +16,28 @@ async function run() {
     const toolsItem = client.db("Tools").collection('product');  
     const orderCollection = client.db("Orders").collection('order');  
     const profile = client.db("Profile").collection('information');  
+    const review = client.db("Review").collection('collection');  
+     
     app.get('/item',async(req,res)=>{ 
       const query = {} ; 
       const cursor = toolsItem.find(query);  
       const items = await cursor.toArray() ; 
       res.send(items);
-   })  
+   })   
+   // review item 
+   app.get('/review',async(req,res)=>{ 
+      const query = {} ; 
+      const reviewItems = review.find(query);  
+      const getReview = await reviewItems.toArray() ; 
+      res.send(getReview);
+   }) 
+     //add review 
+     app.post('/review',async(req,res)=>{ 
+      const newReview = req.body ;
+      const result =  await review.insertOne(newReview)
+     res.send(result);
+  }) 
+
    //order collection 
    app.post('/order',async(req,res)=>{ 
        const order = req.body ;
